@@ -9,6 +9,7 @@ $script = <<SCRIPT
   echo deb http://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
   apt-get -y update
   apt-get -y install lxc-docker linux-image-generic-lts-raring linux-headers-generic-lts-raring
+  usermod -a -G docker vagrant
   reboot
 SCRIPT
 
@@ -19,4 +20,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # This box comes with a docker ready kernel: http://www.vagrantbox.es/
   config.vm.box_url = 'http://files.vagrantup.com/precise64.box'
   config.vm.provision 'shell', inline: $script
+  # Change this to whatever you want it to be
+  config.vm.network "private_network", ip: "192.168.50.5"
 end
