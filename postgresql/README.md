@@ -39,7 +39,7 @@ This assumes you have a docker image for your rails app tagged user/app_name.
 You should replace this with an actual image for a rails app.
 
 ```
-pg_url=postgres://appuser:supersecret@$pg_host:5432/app_db_name user/appname
+pg_url=postgres://appuser:supersecret@$pg_host:5432/app_db_name
 docker run -e RAILS_ENV=production -e DB=$pg_url user/appname rake db:migrate
 app1=$(docker run -d -e RAILS_ENV=production -e DB=$pg_url -p 4001:4567 user/appname puma -t 4:4 -w 1 -p 4567)
 ```
@@ -52,8 +52,6 @@ app2=$(docker run -d -e RAILS_ENV=production -e DB=$pg_url -p 4002:4567 user/app
 app3=$(docker run -d -e RAILS_ENV=production -e DB=$pg_url -p 4003:4567 user/appname puma -t 4:4 -w 1 -p 4567)
 ```
 
-You can
-
 ### 5. Make a test request
 
 At this point, your rails app is running on host port 4001 and connected
@@ -61,6 +59,8 @@ to our postgresql database. Let's make a request and see what happens.
 
 ```
 curl localhost:4001/ | less
+curl localhost:4002/ | less
+curl localhost:4003/ | less
 ```
 
 If you see your app's home page, you win! If not, keep trying.

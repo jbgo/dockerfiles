@@ -4,7 +4,7 @@ RUN apt-get -yq install python-software-properties software-properties-common
 RUN add-apt-repository ppa:pitti/postgresql
 RUN apt-get -yq update
 RUN apt-get -yq install postgresql-9.2 postgresql-client-9.2 postgresql-contrib-9.2
-ADD ./install_postgres.sh /install_postgres.sh
+ADD ./pg_admin_user.sh /pg_admin_user.sh
 RUN chmod +x /*.sh
 RUN /pg_admin_user.sh
 RUN echo "listen_addresses = '*'" >> /etc/postgresql/9.2/main/postgresql.conf
