@@ -27,7 +27,7 @@ I am creating a user named `appuser` with the password `supersecret`.
 You will want to replace these with your own user/password.
 
 ```
-docker run -i -t -entrypoint=/bin/bash -e pg_host=$pg_host -u root pg
+docker run -i -t -entrypoint=/bin/bash -e pg_host=$pg_host -u root jbgo/postgresql
 createuser -U docker -h $pg_host -l -P appuser
 createdb -U docker -h $pg_host -O appuser app_db_name
 ^D
